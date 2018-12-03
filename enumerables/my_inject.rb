@@ -1,13 +1,17 @@
+class Array
   def my_inject(accumulator = nil, &block)
-    start = 0
+    i = 0
 
     if accumulator.nil?
       accumulator = self.first
-      start = 1
+      i = 1
     end
 
-     self[start..-1].each  do |el|
-       accumulator = block.call(accumulator, el)
-     end
-     accumulator 
+    while i < self.length
+      accumulator = block.call(accumulator, self[i])
+      i += 1
+    end
+
+    accumulator
   end
+end
